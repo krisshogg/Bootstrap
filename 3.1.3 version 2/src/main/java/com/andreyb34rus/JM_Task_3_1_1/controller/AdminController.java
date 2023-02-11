@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,16 +30,21 @@ public class AdminController {
         this.roleRepository = roleRepository;
     }
 
-    @GetMapping("")
-    public String showAdminPage(@ModelAttribute User user, Model model) {
-        model.addAttribute("users", userService.getAllUsers());
+    @GetMapping()
+    public String viewUsers(Principal principal, Model model) {
+        User authorizedUser = userService.getUserByName(principal.getName());
+        List<User> userListToView = userService.getAllUsers();
+        model.addAttribute("authorizedUser", authorizedUser);
+        model.addAttribute("users", userListToView);
+        model.addAttribute("newUser", new User());
+        model.addAttribute("listRoles", userService.getAllRoles());
         return "usersList";
     }
 
     @GetMapping("/addUser")
     public String newUserPage(@ModelAttribute User user, Model model) {
         model.addAttribute("user", user);
-        model.addAttribute("roles", userService.getAllRoles());
+        model.addAttribute("listRoles", userService.getAllRoles());
         return "newUser";
     }
 

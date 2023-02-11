@@ -63,12 +63,14 @@
                                 <input th:name="password" th:field="*{password}" th:type="password" class="form-control"
                                        id="password"/>
                                 <br>
-                                <label>Roles:
-                                    <select size="2" multiple name="listRoles" required="required">
-                                        <option selected="selected" value="1">USER</option>
-                                        <option value="2">ADMIN</option>
-                                    </select>
-                                </label>
+                                <label for="selectRoles">Roles</label>
+                                <select multiple  id="selectRoles" class="form-control" size="2" name="roles" required>
+                                    <option th:each="role:${listRoles}"
+                                            th:text="${role.role.substring(5)}"
+                                            th:value="${role.id}"
+                                            th:field="*{roles}">
+                                    </option>
+                                </select>
                                 <br>
                                 <button th:type="submit" class="btn btn-success btn-lg" value="Add new user">Add new user
                                 </button>
