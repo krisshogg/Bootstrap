@@ -1,6 +1,5 @@
 package com.andreyb34rus.JM_Task_3_1_1.controller;
 
-import com.andreyb34rus.JM_Task_3_1_1.model.Role;
 import com.andreyb34rus.JM_Task_3_1_1.model.User;
 import com.andreyb34rus.JM_Task_3_1_1.repository.RoleRepository;
 import com.andreyb34rus.JM_Task_3_1_1.service.UserService;
@@ -11,10 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,8 +20,8 @@ public class AdminController {
     private final RoleRepository roleRepository;
 
     @Autowired
-    public AdminController (UserService userService,
-                            RoleRepository roleRepository) {
+    public AdminController(UserService userService,
+                           RoleRepository roleRepository) {
         this.userService = userService;
         this.roleRepository = roleRepository;
     }
@@ -54,12 +50,6 @@ public class AdminController {
             return "newUser";
         }
 
-/*        Set<Role> roles = new HashSet<>();
-        for (int roleId : rolesId) {
-            roles.add(roleRepository.getById(roleId));
-        }
-
-        user.setRoles(roles);*/
         userService.save(user);
         return "redirect:/admin";
     }
@@ -75,5 +65,4 @@ public class AdminController {
         userService.delete(id);
         return "redirect:/admin";
     }
-
 }
