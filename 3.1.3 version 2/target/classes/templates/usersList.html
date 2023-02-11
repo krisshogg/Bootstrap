@@ -96,12 +96,12 @@
                                                                    th:value="${user.username}"/>
                                                             <br>
                                                             <label for="email0"><b>Email</b></label>
-                                                            <input th:name="email" th:type="text"
+                                                            <input th:name="email" th:type="email"
                                                                    class="form-control" id="email0"
                                                                    th:value="${user.email}"/>
                                                             <br>
                                                             <label for="password0"><b>Password</b></label>
-                                                            <input th:name="password" type="text"
+                                                            <input th:name="password" type="password"
                                                                    class="form-control" id="password0"
                                                                    th:value="${user.password}"/>
                                                             <br>
@@ -152,7 +152,7 @@
                                                                    id="name1" th:value="${user.username}" disabled/>
                                                             <br>
                                                             <label for="email1"><b>Email</b></label>
-                                                            <input th:name="email" th:type="text"
+                                                            <input th:name="email" th:type="email"
                                                                    class="form-control"
                                                                    id="email1" th:value="${user.email}" disabled/>
                                                             <br>
